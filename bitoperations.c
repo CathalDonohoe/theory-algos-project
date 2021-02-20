@@ -18,6 +18,11 @@ void bin_print(unsigned int i){
 
 // Standard main structure
 int main(int argc, char const *argv[]){
+
+    printf("%d\n", argc);
+    return 0;
+    
+
     // Set i to a literal value
     unsigned int i = 0x0f0f0f0f;//1; // 0xf1; // 241 // 8589934591
 
