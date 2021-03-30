@@ -4,6 +4,7 @@ args
 func
 prepoc
 emptyexec
+sha256
 
 # Prerequisites
 *.d
