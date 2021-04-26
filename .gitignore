@@ -6,6 +6,7 @@ prepoc
 emptyexec
 sha256
 endian
+sha512
 
 # Prerequisites
 *.d
