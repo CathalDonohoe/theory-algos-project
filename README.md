@@ -1,15 +1,22 @@
 # Theory-Algos-Project
 ## Description of this repository
-This repository is for the module Theory of Algorithms for the Software Development course in Galway-Mayo Institute of Technology <br>
-The goal of the project is to write a program in the C programming language to calculate the SHA512 value of an input file. The program must take the name or the path of the file as a command line argument and output the SHA512 digest of it. This program does not use any external libaries other than what is included in the C standard library. The program must compile using `gcc` or `clang` and must include a MakeFile which compiles it upon `make` being called in the project folder. The Makefile must include tests which run upon `make test` being called.
+This repository houses the Theory of Algorithms module from Galway-Mayo Institute of Technology's Software Development course.
+ <br>
+The project's aim is to write a C program that calculates the SHA512 value of an input file.<br>
+The software must take the file's name or route as a command line argument and return its SHA512 digest. Other than what is included in the C standard library, this program does not use any external libraries.<br>
+The software must compile with `gcc` or `clang`, and it must provide a MakeFile that compiles it when the project folder's `make` command is called.<br>
+The Makefile must contain tests that run when the make test command is executed. 
 
 ## What is Secure Hash Standard
-The Secure Hash Algorithm was developed by NIST, specified in the Secure Hash Standard, originally in 1993. They were revised as SHA-1 in 1995 that produced a 160 bit hash. NIST specified SHA-2 algorithms in 2002. The Secure Hash algorithms are a family of cryptographic hash functions published by the National Institute of Standards of Technology as a U.S. Federal Information Processing Standard[2]. These algorithms are used to generate digests of messages. All of the algorithms are iterative, one-way hash functions that can process a message to produce a condensed representation called a message digest. It works by transforming the data using a hash function: an algorithm that consists of bitwise operations, modular additions, and compressions funcitons. The hash function then produces a fixed-size string that looks nothing like the original. Hashing algorithms are used in many things such as internet security, digital certificates and even blockchains.<br>
+The Secure Hash Algorithm was developed by NIST, specified in the Secure Hash Standard, originally in 1993. They were revised as SHA-1 in 1995 that produced a 160 bit hash. NIST specified SHA-2 algorithms in 2002. The Secure Hash algorithms are a family of cryptographic hash functions published by the National Institute of Standards of Technology as a U.S. Federal Information Processing Standard[2]. These algorithms are used to create message digests. <br>
+All of the algorithms are iterative one-way hash functions that can process a message and generate a message digest. <br>
+It transforms data using a hash function, which is an algorithm made up of bitwise operations, modular additions, and compression functions. The hash function then generates a fixed-length string that bears no resemblance to the original. <br>
+Many items use hashing algorithms, like internet protection, digital certificates, and even blockchains.<br>
 <img src="https://gcn.com/-/media/GIG/GCN/Redesign/Articles/2015/August/sha3.png">
 
 
 ## What is SHA-512
-SHA-512 is a funciton of cryptographic algorithm SHA-2, which is an evolution of SHA-1. The SHA-2 family consists of six hash functions with digests that are 224, 256, 384 or 512 bits: SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256. SHA-512 is a novel hash function computed with eight 64-bit words. SHA-512 is very close to SHA-256 except that it uses 1024 bits "blocks", and accepts a 2^128 bits maximum length string at its input.
+SHA-512 is a function of cryptographic algorithm SHA-2, which is an evolution of SHA-1. The SHA-2 family consists of six hash functions with digests that are 224, 256, 384 or 512 bits: SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256. SHA-512 is a novel hash function computed with eight 64-bit words. SHA-512 is very close to SHA-256 except that it uses 1024 bits "blocks", and accepts a 2^128 bits maximum length string at its input.
 <img src="https://www.researchgate.net/profile/Nivethitha-Somu/publication/282937655/figure/tbl3/AS:667063395819524@1536051715760/Comparisons-on-SHA-based-on-Key-size.png"> <br>
 <br>
 SHA-512 is identical in structure to SHA-256 but:
@@ -101,7 +108,13 @@ Each message block is processed in order using the following steps: <br>
 These components together make the SHA-512 algorithm programmed in the C Programming Language. TBC
 
 ## Why can't we reverse the SHA512 algorithm to retrieve the original message from a hash digest?
-The SHA512 function cannot be decrypted or revered as it is not an encryption function as it’s a one-way function. A lot of people are under the impression that SHA-512 encrypts data. It does no such thing. All it does is compute a hash value for a given set of data. Hash functions are used as one-way methods. They take the data (messages) and compute hash values (digests). The inverse can't be done. To better explain why a SHA-512 is NOT reversible, here's very simple example:
+The SHA512 function cannot be decrypted or revered since it is a one-way function rather than an encryption function.
+Many people mistakenly believe that SHA-512 encrypts data.
+It doesn't work like that.
+It simply calculates a hash value for a collection of data.
+One-way methods such as hash functions are used.
+They calculate hash values(digets) from the data (messages).
+It's impossible to do the same.  To better explain why a SHA-512 is NOT reversible, here's very simple example: <br>
 Using SHA-512 on text data of 750,000 characters, we obtain a mere 128 digits digest. Now if I wanted to revert this, how could I possibly determine with exactitude which 750,000 characters were used from just 128 digits? <br>
  The fundamental difference is that while encryption is a two way function(given the key) hash is only a one way function: given some data you can compute the hash, given the hash it is difficult to have the data back. In these cases, it is computationally unfeasible to find the reverse of a hash, but it is easy to find the hash of any data. Reversing a hash function would cause a preimage attack. <br>
 	“In cryptography, a preimage attack on cryptographic hash functions tries to find a message that has a specific hash value. A cryptographic hash function would resist attacks on its preimage (set of possible inputs).” [1] <br>
@@ -111,17 +124,26 @@ Using SHA-512 on text data of 750,000 characters, we obtain a mere 128 digits di
 •	Non-linearity: Hashing algorithms always contain non-linear operations – this prevents people from using linear algebra techniques to solve the input from a given output.  Building a hash algorithm using just addition operators is a terrible idea, that’s why most hashing algorithms use many combinations of linear and non-linear operations. <br>
 
 ## Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?
-The problem with this question begins in how many possible 512-bit strings exist from the output of the SHA-512 algorithm. We don’t know how large the range of the SHA-512 function is. It is assumed to be very close to 2512, which would be all possible 512-bit values. This leads us to a more important question; how long would it take to compute all the possible 512-bit strings? Well if we were to start by computing our 2512into human numbers, we would get: <br>
-2512 = 13407807929942597099574024998205846127479365820592393377723561443721764030073546976801874298166903427690031858186486050853753882811946569946433649006084096 <br>
+The problem with this question begins in how many possible 512-bit strings exist from the output of the SHA-512 algorithm. We don’t know how large the range of the SHA-512 function is. It is assumed to be very close to 2^512, which would be all possible 512-bit values. This leads us to a more important question; how long would it take to compute all the possible 512-bit strings? Well if we were to start by computing our 2^512 into human numbers, we would get: <br>
+2^512 = 13407807929942597099574024998205846127479365820592393377723561443721764030073546976801874298166903427690031858186486050853753882811946569946433649006084096 <br>
 This number is close to 0.1% of the atoms in the visible universe, so it goes without saying that there are a lot of possible values from the SHA-512 algorithm. To put this equation into perspective, ill use Bitcoin as an example. Bitcoin uses SHA-256, which I am aware has a completely different number of possible strings values but is comparable to SHA-512 none the less. <br>
-Since January 2015, Bitcoin has been computing 300 quadrillion SHA-256 hashes per second. That’s 300 x 1015 hashes per second. If we were trying to give each of the possible values, we would first need to compute every value, and then compute it yet again to ensure all possible values have been computed. To do this with SHA-512, we would only need to calculate 2256 hashes. If we were to take Bitcoins current progress with SHA-256: <br>
-2128 / (300 x 1015 .86400.365.25) = 3.6 x 1013 years. For comparison, our universe is only about 13.7 x 109 years old. Yet again, this is with SHA-256, which means that computing all the possible 512-bit strings would be an even larger number exponentially.  <br>
+Since January 2015, Bitcoin has been computing 300 quadrillion SHA-256 hashes per second. That’s 300 x 1015 hashes per second. If we were trying to give each of the possible values, we would first need to compute every value, and then compute it yet again to ensure all possible values have been computed. To do this with SHA-512, we would only need to calculate 2^256 hashes. If we were to take Bitcoins current progress with SHA-256: <br>
+2^128 / (300 x 10^15 .86400.365.25) = 3.6 x 10^13 years. For comparison, our universe is only about 13.7 x 10^9 years old. Yet again, this is with SHA-256, which means that computing all the possible 512-bit strings would be an even larger number exponentially.  <br>
 So, to answer the question “Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?”, then my answer would be “Yes”. It is possible but given enough time. The time is the problem, we would need more years than our own universe is today. This is under the assumption that we know the full range of the SHA-512 algorithm, which we currently don’t. The algorithm would take longer than the universe is currently, but it is possible, just not feasible. <br>
 
 
 ## How difficult is it to find a hash digest beginning with at least twelve zeros?
-very difficult
+With SHA-512, a message digest algorithm or a hash funciton, is a procedure that maps input data of an arbitary length to an output of fixed length. Output is often known as hash values or hash digests [8]. These digests are a series of numbers and characters. The length of these digests, in the case of SHA-512, are 128 characters. This means that there are only a certain amount of posible digest outputs, more than the variable of inputs. Therefore we may result with the same output for 2 different inputs. <br>
+With this question, I am going to refer to what Botcoin miners are currently doing to mine bitcoin. In crypotocurrency mining, a target hash is a numeric value that a hashed block header must be less than or equal to in order for a new block to be awarded to a miner [9]. Miners make these guesses by randomly generating as many "nonces" as possible, as fast as possible [10]. 
+A nonce is short for "number only used once". Nonces are often used on authentication protocols and cryptographic hash functions [11]. The first miner whose nonce generates a hash that is less than or equal to the target hash is awarded credit for completing that block and is awarded the spoils of 6.25 BTC [10]. 
+All target hashes begin with zeroes - at least eight zeroes and up to 63 zeroes.  There is no minimum target, but there is a maximum target set by the Bitcoin Protocol. No target can be greater than this number: <br>
 
+* 00000000ffff0000000000000000000000000000000000000000000000000000 <br>
+
+This method is the simplest method I can think of when it comes to computing the hash digest in question. But interesting enough, this has been done as of 2017. For years there was a competition to find an ASCII string whose SHA-512 hash value is as low as possible(Which roughly speaking means having as many leading zeroes). This was solved by a programmer by the name of Nayuki. He did this by nuilding a brute-force search program. Surprisingly enough, the lowest SHA-512 value he could calculate was:
+* 000000000000363356970fe81fd24bb30019cefcdf34f1ba29ea99871297f621a0f3351ae41f1109b49261a3246c83e59e182f7a12431291da1db2cda80ddf17  [13]<br>
+
+This value has exactly twelve zeroes at the start of the hash value. so to summerise my answer to "How difficult is it to find a hash digest beginning with at least twelve zeros?", it is so difficult to do that you may just win a competition and beat a record if you can manage to do so.
 
 
 [1] https://en.wikipedia.org/wiki/Preimage_attack <br>
@@ -130,3 +152,27 @@ very difficult
 [4] https://www.youtube.com/watch?v=5OVb4I5fhKI <br>
 [5] https://www.youtube.com/watch?v=wNBlwmJQbC8 <br>
 [6] https://en.bitcoinwiki.org/wiki/SHA-512 <br>
+[7] https://medium.com/@zaid960928/cryptography-explaining-sha-512-ad896365a0c1 <br>
+[8] https://www.veracode.com/blog/research/message-digests-aka-hashing-functions <br>
+[9] https://www.investopedia.com/terms/t/target-hash.asp <br>
+[10] https://www.investopedia.com/tech/how-does-bitcoin-mining-work/ <br>
+[11] https://academy.binance.com/en/glossary/nonce <br>
+[12] https://www.nayuki.io/page/lowest-sha512-value-by-brute-force <br>
+[13]https://web.archive.org/web/20171002020748/http://www.h11e.com/ <br>
+[14]https://dev.to/damcosset/trying-to-understand-blockchain-by-making-one-ce4 <br>
+[15]https://en.wikipedia.org/wiki/Cryptographic_hash_function <br>
+[16]https://yukimotopress.github.io/programming-blockchains-step-by-step <br>
+[17]https://bitcoin.stackexchange.com/questions/65478/which-is-the-smallest-hash-that-has-ever-been-hashed  
+[18]https://bitcointalk.org/index.php?topic=29675.0  
+[19]https://www.reddit.com/r/programming/comments/1y17al/hashchallenge_can_you_find_the_lowest_value/  
+[20]https://www.simplilearn.com/bitcoin-mining-explained-article  
+[21]https://www.freecodecamp.org/news/how-bitcoin-mining-really-works-38563ec38c87/  
+[22]http://www.righto.com/2014/09/mining-bitcoin-with-pencil-and-paper.html  
+[23]https://crypto.stackexchange.com/questions/89690/sha-512-how-difficult-is-it-to-find-a-hash-digest-beginning-with-at-least-twel  
+[24]https://www.investopedia.com/terms/n/nonce.asp  
+[25]https://en.bitcoin.it/wiki/Nonce  
+[26]https://www.sciencedirect.com/topics/computer-science/hash-digest  
+[27]https://www.thesslstore.com/blog/what-is-a-hash-function-in-cryptography-a-beginners-guide/  
+[28]https://cleartax.in/g/terms/target-hash  
+[29]http://www.iwar.org.uk/comsec/resources/cipher/sha256-384-512.pdf 
+[30]https://core.ac.uk/download/pdf/186473296.pdf  

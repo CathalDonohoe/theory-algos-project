@@ -167,7 +167,7 @@ int next_hash(union Block *M, WORD H[]) {
 
 
 int sha512(FILE *f, WORD H[]) {
-    // The function that performs/orchestrates the SHA256 algorithm on
+    // The function that performs/orchestrates the SHA512 algorithm on
     // message f.
 
     // The current block.
@@ -206,10 +206,10 @@ int main(int argc, char *argv[]) {
     // Open file from command line for reading.
     f = fopen(argv[1], "r");
 
-    // Calculate the SHA256 of f.
+    // Calculate the SHA512 of f.
     sha512(f, H);
 
-    // Print the final SHA256 hash.
+    // Print the final SHA512 hash.
     for (int i = 0; i < 8; i++)
         printf("%016" PF, H[i]);
     printf("\n");
