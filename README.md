@@ -7,11 +7,35 @@ The software must take the file's name or route as a command line argument and r
 The software must compile with `gcc` or `clang`, and it must provide a MakeFile that compiles it when the project folder's `make` command is called.<br>
 The Makefile must contain tests that run when the make test command is executed. 
 
+## How to Run the project
+To start please clone the repository onto your own device <br>
+``` https://github.com/CathalDonohoe/theory-algos-project ``` <br>
+To do this open a command line and execute these lines of code <br>
+``` git clone https://github.com/CathalDonohoe/theory-algos-project ``` <br>
+After this run these commands <br>
+``` 
+    cd theory-algos-project 
+    make sha512
+    ./sha512 input.txt
+```
+<img src="https://gyazo.com/ea80b5efbd06fcac4f5cafec5c306f61.png">
+
+This is simply creating a sha512 executable and then asking it to run the contents of the input.txt and to print out its hash value. <br>
+Another method of doing this, that is stated above in the description of the repository is a Makefile. This file will run an automated test if called. To do this please run the following lines of code in the command line: <br>
+```
+    make clean
+    make
+    make tests
+```
+<img src="https://gyazo.com/c9e5b2bec7335088b7edb378c8f1366e.png">
+<br>
+<br>
+
 ## What is Secure Hash Standard
 The Secure Hash Algorithm was developed by NIST, specified in the Secure Hash Standard, originally in 1993. They were revised as SHA-1 in 1995 that produced a 160 bit hash. NIST specified SHA-2 algorithms in 2002. The Secure Hash algorithms are a family of cryptographic hash functions published by the National Institute of Standards of Technology as a U.S. Federal Information Processing Standard[2]. These algorithms are used to create message digests. <br>
 All of the algorithms are iterative one-way hash functions that can process a message and generate a message digest. <br>
 It transforms data using a hash function, which is an algorithm made up of bitwise operations, modular additions, and compression functions. The hash function then generates a fixed-length string that bears no resemblance to the original. <br>
-Many items use hashing algorithms, like internet protection, digital certificates, and even blockchains.<br>
+SHA-512 is used in many things such as internet security, digital certificates and even blockchains [7]. Hashed passwords cannot be modified, stolen, or jeopardized. No well-recognized and efficient key or encryption scheme exists that can be misused. Also, there is no need to worry if a hash code is stolen since it cannot be applied anywhere else.<br>
 <img src="https://gcn.com/-/media/GIG/GCN/Redesign/Articles/2015/August/sha3.png">
 
 
@@ -174,5 +198,5 @@ This value has exactly twelve zeroes at the start of the hash value. so to summe
 [26]https://www.sciencedirect.com/topics/computer-science/hash-digest  
 [27]https://www.thesslstore.com/blog/what-is-a-hash-function-in-cryptography-a-beginners-guide/  
 [28]https://cleartax.in/g/terms/target-hash  
-[29]http://www.iwar.org.uk/comsec/resources/cipher/sha256-384-512.pdf 
+[29]http://www.iwar.org.uk/comsec/resources/cipher/sha256-384-512.pdf  
 [30]https://core.ac.uk/download/pdf/186473296.pdf  
